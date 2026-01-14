@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نظام الأدلة التفاعلي - شركة الأندلس التعليمية</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap');
+
+```
+    * {
+        font-family: 'Tajawal', sans-serif;
+    }
+    
+    .guide-section {
+        white-space: pre-wrap;
+        line-height: 1.8;
+    }
+    
+    .chat-message {
+        animation: slideIn 0.3s ease-out;
+    }
+    
+    @keyframes slideIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .bounce {
+        animation: bounce 1s infinite;
+    }
+    
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-5px); }
+    }
+</style>
+```
+
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-purple-50 min-h-screen">
+
+```
+<!-- Header -->
+<header class="bg-white shadow-md" style="border-bottom: 4px solid #212178;">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+            <svg class="w-8 h-8" style="color: #212178;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            <div>
+                <h1 class="text-2xl font-bold" style="color: #212178;">نظام الأدلة التفاعلي</h1>
+                <p class="text-sm text-gray-600">شركة الأندلس التعليمية</p>
+            </div>
+        </div>
+        <button onclick="toggleMenu()" class="md:hidden">
+            <svg id="menuIcon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+            </svg>
+        </button>
+    </div>
+</header>
+
+<!-- Navigation -->
+<nav class="bg-white shadow-sm" id="mainNav">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="flex flex-col md:flex-row gap-2 py-3">
+            <button onclick="showSection('chat')" class="nav-btn active flex items-center gap-2 px-6 py-3 rounded-lg transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                </svg>
+                <span class="font-semibold">المساعد الذكي</span>
+            </button>
+            <button onclick="showSection('protocol')" class="nav-btn flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <span class="font-semibold">دليل البروتوكولات والمراسم</span>
+            </button>
+            <button onclick="showSection('identity')" class="nav-btn flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                </svg>
+                <span class="font-semibold">دليل الهوية البصرية</span>
+            </button>
+            <button onclick="showSection('social')" class="nav-btn flex items-center gap-2 px-6 py-3 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <span class="font-semibold">دليل المسؤولية المجتمعية</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-4 py-8">
+    
+    <!-- Chat Section -->
+    <div id="chatSection" class="content-section">
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden max-w-4xl mx-auto">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 p-6 text-white">
+                <h2 class="text-2xl font-bold mb-2">المساعد الذكي</h2>
+                <p>اسأل أي سؤال عن الأدلة وسأجيبك فوراً</p>
+            </div>
+            
+            <div id="chatMessages" class="h-96 overflow-y-auto p-6 bg-gray-50">
+                <div class="text-center text-gray-500 mt-20">
+                    <svg class="w-12 h-12 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+                    </svg>
+                    <p class="text-lg mb-6">مرحباً! كيف يمكنني مساعدتك اليوم؟</p>
+                    <div class="grid gap-3 max-w-md mx-auto">
+                        <button onclick="askQuestion('ما هي مراسم استقبال كبار الشخصيات؟')" class="bg-white p-3 rounded-lg shadow hover:shadow-md transition text-right">
+                            ما هي مراسم استقبال كبار الشخصيات؟
+                        </button>
+                        <button onclick="askQuestion('كيف أستخدم الشعار بشكل صحيح؟')" class="bg-white p-3 rounded-lg shadow hover:shadow-md transition text-right">
+                            كيف أستخدم الشعار بشكل صحيح؟
+                        </button>
+                        <button onclick="askQuestion('ما هي شروط المبادرات المجتمعية؟')" class="bg-white p-3 rounded-lg shadow hover:shadow-md transition text-right">
+                            ما هي شروط المبادرات المجتمعية؟
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-white border-t">
+                <div class="flex gap-2">
+                    <input type="text" id="userInput" placeholder="اكتب سؤالك هنا..." 
+                           class="flex-1 px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                           onkeypress="if(event.key==='Enter') sendMessage()">
+                    <button onclick="sendMessage()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Protocol Guide -->
+    <div id="protocolSection" class="content-section hidden">
+        <div class="p-6 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b-2" style="border-color: #212178;">
+                <svg class="w-8 h-8" style="color: #212178;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                <h2 class="text-2xl font-bold" style="color: #212178;">دليل البروتوكولات والمراسم</h2>
+            </div>
+            <div class="guide-section text-lg leading-relaxed">
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">المبادئ العامة:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• الالتزام بالقيم الإسلامية والهوية الوطنية</li>
+                    <li>• تمثيل المدرسة بصورة مهنية ومنظمة</li>
+                    <li>• الاعتدال في الضيافة والتكاليف</li>
+                    <li>• كل فعالية تقام بموافقة مسبقة</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">مراسم الزيارات:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• تنسيق جميع الزيارات مسبقاً مع تحديد الهدف والجدول الزمني</li>
+                    <li>• تجهيز القاعات والمرافق من حيث النظافة والترتيب</li>
+                    <li>• استقبال الضيوف عند بوابة المدرسة من قبل ممثل العلاقات العامة</li>
+                    <li>• تقديم الضيافة الأساسية (قهوة - تمر - مياه)</li>
+                    <li>• إرسال خطاب شكر رسمي بعد انتهاء الزيارة</li>
+                    <li>• توثيق الزيارة بالصور والتقرير الإداري</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">مراسم استقبال كبار الشخصيات:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• إعداد استقبال رسمي يضم الإدارة العليا وفريق العلاقات العامة</li>
+                    <li>• تجهيز القاعة بالأعلام الوطنية وصور القيادة</li>
+                    <li>• الالتزام بآداب الترحيب والمصافحة والترتيب حسب الأسبقية</li>
+                    <li>• إرسال خطاب شكر رسمي وتوثيق الزيارة</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">مراسم سجاد الاستقبال:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• اعتماد اللون البنفسجي (سجاد الخزامى) للضيوف الرسميين</li>
+                    <li>• يستخدم في المداخل الرئيسة ومواقع الاستقبال الرسمي</li>
+                    <li>• يعكس قيم الفخامة والضيافة الراقية ضمن رؤية 2030</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">مراسم الأعلام:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• رفع العلم الوطني على سارية بارزة وسط المدرسة</li>
+                    <li>• يرفع العلم يومياً مع شروق الشمس وينزل عند الغروب</li>
+                    <li>• يحظر تنكيس العلم السعودي تماماً في أي مناسبة</li>
+                    <li>• العلم التالف أو الباهت يستبدل فوراً</li>
+                    <li>• يحظر استخدام العلم للأغراض التجارية أو الدعائية</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #212178;">مراسم السلام الملكي:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• يعزف في بداية جميع الفعاليات الرسمية</li>
+                    <li>• الوقوف احتراماً أثناء العزف مع التزام السكون الكامل</li>
+                    <li>• يمنع استخدام أي نسخة معدلة أو مختصرة</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Identity Guide -->
+    <div id="identitySection" class="content-section hidden">
+        <div class="p-6 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b-2" style="border-color: #BC9C42;">
+                <svg class="w-8 h-8" style="color: #BC9C42;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+                </svg>
+                <h2 class="text-2xl font-bold" style="color: #BC9C42;">دليل الهوية البصرية</h2>
+            </div>
+            <div class="guide-section text-lg leading-relaxed">
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">الشعار:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• يتكون من الرسم والنص (عربي وإنجليزي)</li>
+                    <li>• يجب استخدام الشعار بألوانه الأساسية</li>
+                    <li>• مراعاة التباين والوضوح في جميع الاستخدامات</li>
+                    <li>• الشعار الأساسي على خلفية بيضاء أو فاتحة</li>
+                    <li>• الشعار الأبيض على خلفيات داكنة أو صور</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">المساحة الهامشية:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• إحاطة الشعار بمنطقة خالية من العناصر الأخرى</li>
+                    <li>• نصف X من كل جانب (حيث X هو وحدة القياس)</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">الاستخدامات الخاطئة:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>✗ إزالة أي جزء من مكونات الشعار</li>
+                    <li>✗ إضافة تأثيرات أو ظلال</li>
+                    <li>✗ تغيير ألوان الشعار</li>
+                    <li>✗ استخدام الشعار بجودة منخفضة</li>
+                    <li>✗ تغيير موقع أو أبعاد المكونات</li>
+                    <li>✗ استخدام الشعار بلغة واحدة فقط</li>
+                </ul>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">الألوان الأساسية:</h3>
+                <div class="mr-6 space-y-3">
+                    <div class="flex items-center gap-4">
+                        <div class="w-20 h-20 rounded-lg" style="background-color: #212178;"></div>
+                        <div>
+                            <p class="font-bold">الأزرق الداكن</p>
+                            <p class="text-sm">C:100 M:100 Y:21 K:9</p>
+                            <p class="text-sm">R:33 G:33 B:120</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">الألوان الثانوية:</h3>
+                <div class="mr-6 space-y-3">
+                    <div class="flex items-center gap-4">
+                        <div class="w-20 h-20 rounded-lg" style="background-color: #BC9C42;"></div>
+                        <div>
+                            <p class="font-bold">الذهبي</p>
+                            <p class="text-sm">C:27 M:35 Y:90 K:2</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-20 h-20 rounded-lg" style="background-color: #0099DD;"></div>
+                        <div>
+                            <p class="font-bold">الأزرق الفاتح</p>
+                            <p class="text-sm">C:76 M:26 Y:0 K:0</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="w-20 h-20 rounded-lg" style="background-color: #BBBDBE;"></div>
+                        <div>
+                            <p class="font-bold">الرمادي</p>
+                            <p class="text-sm">C:27 M:20 Y:21 K:0</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #BC9C42;">الخطوط:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• خط سومر (Somar) للغة العربية</li>
+                    <li>• الأوزان: Light, Regular, Medium, Semibold, Bold</li>
+                    <li>• Bold للعناوين الرئيسية</li>
+                    <li>• Medium للعناوين الفرعية والفقرات</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Responsibility Guide -->
+    <div id="socialSection" class="content-section hidden">
+        <div class="p-6 bg-white rounded-lg shadow-sm max-w-4xl mx-auto">
+            <div class="flex items-center gap-3 mb-6 pb-4 border-b-2" style="border-color: #0099DD;">
+                <svg class="w-8 h-8" style="color: #0099DD;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
+                </svg>
+                <h2 class="text-2xl font-bold" style="color: #0099DD;">دليل المسؤولية المجتمعية</h2>
+            </div>
+            <div class="guide-section text-lg leading-relaxed">
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #0099DD;">الرؤية:</h3>
+                <p class="mr-6 mb-4">منظومة تعليمية رائدة تبني جيلاً يمتلك قدرات تعلم عالمية</p>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #0099DD;">الرسالة:</h3>
+                <p class="mr-6 mb-4">بناء جيل رائد يحب التعلم، يرعاه فريق معد في مؤسسة تربوية معاصرة، تحكمها قيم أصيلة وتلبي تطلعات المجتمع</p>
+
+                <h3 class="text-xl font-bold mt-6 mb-3" style="color: #0099DD;">القيم:</h3>
+                <ul class="mr-6 space-y-2">
+                    <li>• <strong>التعلم:</strong> ثقافة تطورنا ونضمن بها استمرارية نجاحنا</li>
+                    <li>• <strong>المسؤولية:</strong> التزام بأدوارنا ووفاء بوعودنا</li>
+                    <li>• <strong>الاستقامة:</strong> تمسك بالثوابت والأخلاق الرفيعة</li>
+                    <li>• <strong>الإبداع:</strong> فكر خلاق وإنجاز متفرد نعززه بمهارات متطورة
+```
